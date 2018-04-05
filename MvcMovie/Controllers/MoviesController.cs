@@ -19,9 +19,25 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Movies
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _context.Movie.ToListAsync());
+            //Creates a LINQ query to select movies 
+            var movies = from m in _context.Movie select m;
+
+            //If the searchString parameter contains a string, the movies query is modified to filter on the 
+            //value of the search string
+            if(!String.IsNullOrEmpty(searchString))
+            {
+                movies = movies.Where(s => s.Title.Contains(searchString));
+            }
+
+            return View(await movies.ToListAsync());
+        }
+
+        [HttpPost]
+        public string Index(string searchString, bool notUsed)
+        {
+            return "From [HttpPost]Index: filter on " + searchString;
         }
 
         // GET: Movies/Details/5
