@@ -1,17 +1,10 @@
 ﻿@model MvcMovie.Models.Movie
 
 @{
-    Layout = "_Layout";
+    ViewData["Title"] = "Details";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
-</head>
-<body>
+<h2>Details</h2>
 
 <div>
     <h4>Movie</h4>
@@ -47,5 +40,3 @@
     <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
-</body>
-</html>
